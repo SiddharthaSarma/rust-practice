@@ -1,3 +1,4 @@
+mod rect;
 #[derive(Debug)]
 struct User {
     active: bool,
@@ -15,14 +16,15 @@ struct Point(i32, i32, i32);
 // Unit like structs (will discuss in chapter 10)
 struct AlwaysEqual;
 
-struct UserRef {
-    active: bool,
-    username: &str,
-    email: &str,
-    sign_in_count: u64,
-}
+// struct UserRef {
+//     active: bool,
+//     username: &str,
+//     email: &str,
+//     sign_in_count: u64,
+// }
 
 fn main() {
+    rect::get_rect();
     let mut user1 = User {
         active: true,
         username: String::from("siddhartha"),
