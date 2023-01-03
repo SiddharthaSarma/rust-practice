@@ -22,6 +22,26 @@ fn main() {
     let six_new = IpAddrNew::v6(String::from("::1"));
 
     let val = Some("5");
+
+    let some_max = Some(3u8);
+    match some_max {
+        Some(max) => println!("the max value is {}", max),
+        _ => (),
+    }
+    if let Some(max) = some_max {
+        println!("the max value using if let is {}", max);
+    }
+
+    let mut count = 1;
+    match coin {
+        Coin::Quarter(state) => println!("State quarter from {:?}!", state),
+        _ => count += 1,
+    }
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        count += 1;
+    }
 }
 
 fn values_in_cents(coin: Coin) -> u8 {
