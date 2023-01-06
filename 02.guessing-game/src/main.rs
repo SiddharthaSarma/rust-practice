@@ -5,8 +5,8 @@ use std::io;
 fn main() {
     println!("Guess your number!");
     let secret_number = rand::thread_rng().gen_range(1..=100);
-
     let mut count = 0;
+
     loop {
         println!("Please input your guess.");
         let mut guess = String::new();
