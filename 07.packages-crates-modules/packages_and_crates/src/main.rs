@@ -1,3 +1,6 @@
+use crate::garden::vegetables::Asparagus;
+pub mod garden;
+
 fn main() {
     /*
     * A Crate is the smallest amount of code that the Rust compiler considers at a time.
@@ -19,5 +22,6 @@ fn main() {
     * file will be a separate binary crate.
     * 
     * */
-    println!("Hello, world!");
+    let plant = Asparagus {};
+    println!("I'm growing {:?}", plant);
 }
