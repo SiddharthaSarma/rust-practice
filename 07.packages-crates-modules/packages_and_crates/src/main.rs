@@ -1,6 +1,14 @@
 use crate::garden::vegetables::Asparagus;
 pub mod garden;
-use std::collections::HashMap;
+use std::collections::HashMap; // idiomatic way
+
+use std::fmt;
+use std::io;
+
+
+use std::io::Result as IoResult;
+use std::fmt::Result as FmtResult;
+
 
 fn main() {
     /*
@@ -25,4 +33,23 @@ fn main() {
     * */
     let plant = Asparagus {};
     println!("I'm growing {:?}", plant);
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+    
+}
+
+fn function1() -> fmt::Result {
+
+}
+
+fn function2() -> io::Result<()> {
+
+}
+
+fn function1() -> FmtResult {
+
+}
+
+fn function2() -> IoResult<()> {
+
 }
