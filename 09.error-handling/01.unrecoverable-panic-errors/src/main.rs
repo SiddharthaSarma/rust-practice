@@ -10,5 +10,6 @@ fn main() {
     // program encounters  an unrecoverable error.
     //
     println!("Hello, world!");
+    panic!("Error message");
     
 }
