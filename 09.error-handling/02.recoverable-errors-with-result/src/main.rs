@@ -1,8 +1,8 @@
 enum Result<T, E> {
     Ok(T),
-    Err(E)
+    Err(E),
 }
-use std::fs::File;
+use std::{fs::File, io::ErrorKind};
 
 fn main() {
     let greeting_file_result = File::open("hello.txt");
@@ -13,11 +13,21 @@ fn main() {
             std::io::ErrorKind::NotFound => match File::create("hello.txt") {
                 Ok(fc) => fc,
                 Err(e) => panic!("Problem creating the file {:?}", e),
-            }, 
+            },
             other_error => {
                 panic!("Problem opening the file {:?}", other_error);
             }
         },
     };
-}
 
+    // other method
+    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create("hello.txt").unwrap_or_else(|error| {
+                panic!("Problem creating the file {:?}", error);
+            })
+        } else {
+            panic!("Problem opening the file {:?}", error);
+        }
+    });
+}
