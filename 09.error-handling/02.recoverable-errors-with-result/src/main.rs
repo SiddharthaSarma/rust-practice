@@ -1,8 +1,9 @@
-enum Result<T, E> {
-    Ok(T),
-    Err(E),
-}
-use std::{fs::File, io::ErrorKind};
+// enum Result<T, E> {
+//     Ok(T),
+//     Err(E),
+// }
+use std::{fs::File, io::ErrorKind, io::Read};
+// use std::io::self;
 
 fn main() {
     let greeting_file_result = File::open("hello.txt");
@@ -30,4 +31,47 @@ fn main() {
             panic!("Problem opening the file {:?}", error);
         }
     });
+
+    let greeting_file = File::open("hello.txt").unwrap();
+
+    let greeting_file = File::open("hello.txt").expect("Not able to open the file");
+
+    // propagating errors
 }
+
+fn read_username_from_file() -> std::result::Result<String, std::io::Error> {
+    let username_file_result = File::open("hello.txt");
+    let mut username_file = match username_file_result {
+        Ok(file) => file,
+        Err(e) => return Err(e),
+    };
+
+    let mut username = String::new();
+
+    match username_file.read_to_string(&mut username) {
+        Ok(_) => Ok(username),
+        Err(e) => Err(e),
+    }
+}
+
+fn read_username_from_file_query_version() -> std::result::Result<String, std::io::Error> {
+    let mut username_file = File::open("hello.txt")?;
+    let mut username = String::new();
+
+    username_file.read_to_string(&mut username)?;
+    Ok(username)
+}
+
+fn read_username_from_file_other_version() -> std::result::Result<String, std::io::Error> {
+    let mut username = String::new();
+
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+    Ok(username)
+}
+
+/*
+fn main() -> Result<(), Box<dyn Error>> {
+    let greeting_file = File::open("hello.txt")?;
+    Ok(())
+}
+*/
