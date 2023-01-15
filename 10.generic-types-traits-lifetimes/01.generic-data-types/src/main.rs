@@ -20,9 +20,13 @@ fn main() {
         }
     }
     println!("Largest number is: {largest}");
+    let numbers_list = vec![123, 456, 698, 145];
+    let largest = find_largest(&numbers_list);
+
+    println!("Largest number is: {largest}");
 }
 
-fn largest(list: &[i32]) -> &i32 {
+fn find_largest(list: &[i32]) -> &i32 {
     let mut largest = &list[0];
 
     for item in list {
